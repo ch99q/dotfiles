@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Easier navigation: .., ..., ...., .....
+alias l="ls -la"
+alias ld="ls -ld */"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# Shortcuts
+alias ip="echo $(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F '"' '{ print $2}')"
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+# Disable Spotlight
+alias spotoff="sudo mdutil -a -i off"
+
+# Enable Spotlight
+alias spoton="sudo mdutil -a -i on"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Lock the screen (when going AFK) (MacOS Only)
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+
+alias pj="cd ~/Projects"
+alias pjf="cd ~/Projects/Forks"
+alias pl="cd ~/Projects/Playground"
+alias pjr="cd ~/Projects/Repositories"
+alias pjw="cd ~/Projects/Workspace"

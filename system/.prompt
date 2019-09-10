@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export PROMPT="%{$purple%}%n${PR_RST} at %{$orange%}${STATION_NAME}${PR_RST} in %{$limegreen%}%~${PR_RST} $vcs_info_msg_0_$(virtualenv_info)
+$ "
