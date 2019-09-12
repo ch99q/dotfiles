@@ -21,28 +21,36 @@ WHERE choco >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 (
     echo|set /p="[INFO] Installing Chocolatey... "
     
-    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" >nul && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" >nul 2>nul && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
     
     IF %ERRORLEVEL% NEQ 0 (
         echo SUCCESS
     ) else (
         echo FAILED
+        echo [ERROR] %ERR%
         pause >nul & exit
     )
+) else (
+    echo [INFO] Installing Chocolatey... Skipping
 )
 
 :git
 IF not exist "%PROGRAMFILES%\Git\bin\bash.exe" (
     echo|set /p="[INFO] Installing Git... "
 
-    choco install git --params "/WindowsTerminal /NoShellIntegration /GitOnlyOnPath /SChannel" >nul 2>nul
+    FOR /F "tokens=* USEBACKQ" %%F IN (`choco install git --params "/WindowsTerminal /NoShellIntegration /GitOnlyOnPath /SChannel"`) DO (
+        SET ERR=%%F
+    )
 
     IF %ERRORLEVEL% NEQ 0 (
         echo SUCCESS
     ) else (
         echo FAILED
+        echo [ERROR] %ERR%
         pause >nul & exit
     )
+) else (
+    echo [INFO] Installing Git... Skipping
 )
 
 :cygwin
@@ -50,12 +58,14 @@ IF "%CYGWIN_PATH%"=="" (
     echo|set /p="[INFO] Installing Cygwin... "
 
     Call :Browse4Folder "Choose location to install Cygwin"
+) else (
+    echo [INFO] Installing Cygwin... Skipping
 )
 
 IF "%CYGWIN_PATH%"=="" (
     if exist "%Location%/" (
         if not exist %Location%/bin/cygpath.exe (
-            choco install cygwin --params "/InstallDir:%Location% /NoStartMenu"
+            choco install cygwin --params "/InstallDir:%Location% /NoStartMenu" >nul 2>nul
 
             IF "%Location%" neq "Dialog Cancelled" (
                 echo SUCCESS
@@ -71,13 +81,12 @@ IF "%CYGWIN_PATH%"=="" (
             setx CYGWIN_PATH %Location% >nul 2>nul
             set CYGWIN_PATH=%Location% >nul 2>nul
 
-            echo [INFO] Cygwin was already installed at %Location%
-
-            goto install
+            ERR=Cygwin was already installed at %Location%
         )
     )
 
     echo FAILED
+    echo [ERROR] %ERR%
     pause >nul & exit
 )
 

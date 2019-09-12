@@ -47,8 +47,31 @@ if test -f "$PROFILE_PATH"; then
     echo "[INFO] Loaded profile: $PROFILE from $PROFILE_PATH"
 fi
 
+OS=
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  OS="macos"
+elif [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
+  OS="windows"
+else
+  OS="linux"
+fi
+
 if [[ -z $CONF_INSTALL_VSCODE ]]; then
-    echo "[INFO] Installing VSCode"
+    echo -n "[INFO] Installing VSCode... "
+
+    case $OS in
+      macos)
+        brew cask install vscode
+        ;;
+      windows)
+        choco install vscode
+        ;;
+      *)
+        echo "NOT SUPPORTED"
+        ;;
+    esac
+
+    echo "SUCCESS"
 else
     echo "[INFO] Installing VSCode... Skipping"
 fi
