@@ -38,9 +38,7 @@ IF %ERRORLEVEL% NEQ 0 (
 IF not exist "%PROGRAMFILES%\Git\bin\bash.exe" (
     echo|set /p="[INFO] Installing Git... "
 
-    FOR /F "tokens=* USEBACKQ" %%F IN (`choco install git --params "/WindowsTerminal /NoShellIntegration /GitOnlyOnPath /SChannel"`) DO (
-        SET ERR=%%F
-    )
+    choco install -y git --params "/WindowsTerminal /NoShellIntegration /GitOnlyOnPath /SChannel" >nul
 
     IF %ERRORLEVEL% NEQ 0 (
         echo SUCCESS
@@ -73,7 +71,7 @@ IF "%CYGWIN_PATH%"=="" (
                 setx CYGWIN_PATH %Location% >nul 2>nul
                 set CYGWIN_PATH=%Location% >nul 2>nul
                 
-                goto install
+                goto jq
             )
         ) else (
             echo SUCCESS
@@ -89,6 +87,9 @@ IF "%CYGWIN_PATH%"=="" (
     echo [ERROR] %ERR%
     pause >nul & exit
 )
+
+:jq
+
 
 :install
 SET DIR=%~dp0

@@ -39,7 +39,9 @@ unset DIR
 unset SOURCE
 # End Section
 
-bool(){ return "$((!${#1}))"; }
+if test -f "$PATH/profiles/default.conf"; then
+  source $PATH/profiles/default.conf
+fi
 
 PROFILE_PATH=$PATH/profiles/$PROFILE/settings.conf
 if test -f "$PROFILE_PATH"; then
@@ -56,7 +58,7 @@ else
   OS="linux"
 fi
 
-if [[ -z $CONF_INSTALL_VSCODE ]]; then
+if [[ $CONF_INSTALL_VSCODE ]]; then
     echo -n "[INFO] Installing VSCode... "
 
     case $OS in
