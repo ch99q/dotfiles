@@ -104,4 +104,4 @@ source ~/.function
 source ~/.path
 source ~/.env
 
-source ~/.prompt'
+source ~/.prompt

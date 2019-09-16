@@ -99,6 +99,14 @@ if [[ "$OSTYPE" == "cygwin" ]]; then
   else
     echo "FAILED"
   fi
+
+  echo -n "[INFO] Installing dig..."
+  apt-cyg install bind >/dev/null 2>&1
+  if [ $? ]; then
+    echo "SUCCESS"
+  else
+    echo "FAILED"
+  fi
 fi
 
 if [ $CONF_INSTALL_VSCODE -eq 1 ]; then
@@ -188,6 +196,16 @@ if [ $CONF_INSTALL_VSCODE -eq 1 ]; then
   echo "[INFO] Finished installing VSCode extensions!"
 fi
 
+BACKUP=0
+while true; do
+    read -p "[INFO] Do you wish to backup existing files? (y/N) " yn
+    case $yn in
+        [Yy]* ) BACKUP=1; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 if [ $CONF_SYSTEM -eq 1 ]; then
   echo "[INFO] Writing System files"
 
@@ -195,8 +213,9 @@ if [ $CONF_SYSTEM -eq 1 ]; then
     if test -f $f; then
       N=$(basename $f)
       H=~
-      if test -f $H/$N; then
+      if test -f $H/$N && [ $BACKUP -eq 1 ]; then
         mv $H/$N $H/$N.bak
+        echo "[INFO] Created backup of $H/$N"
       fi
       rm -rf $H/$N
       ln -s $f $H/$N
@@ -211,8 +230,9 @@ if [ $CONF_PROFILE -eq 1 ]; then
     if test -f $f; then
       N=$(basename $f)
       H=~
-      if test -f $H/$N; then
+      if test -f $H/$N && [ $BACKUP -eq 1 ]; then
         mv $H/$N $H/$N.bak
+        echo "[INFO] Created backup of $H/$N"
       fi
       rm -rf $H/$N
       ln -s $f $H/$N
