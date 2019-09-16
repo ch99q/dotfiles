@@ -1,0 +1,9 @@
+{
+  "terminal.integrated.shell.windows": "D:\\bin\\zsh.exe",
+  "terminal.integrated.env.windows": {
+    "CHERE_INVOKING": "1"
+  },
+  "terminal.integrated.shellArgs.windows": [
+    "-l"
+  ]
+}

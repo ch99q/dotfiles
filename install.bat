@@ -27,7 +27,6 @@ IF %ERRORLEVEL% NEQ 0 (
         echo SUCCESS
     ) else (
         echo FAILED
-        echo [ERROR] %ERR%
         pause >nul & exit
     )
 ) else (
@@ -38,13 +37,12 @@ IF %ERRORLEVEL% NEQ 0 (
 IF not exist "%PROGRAMFILES%\Git\bin\bash.exe" (
     echo|set /p="[INFO] Installing Git... "
 
-    choco install -y git --params "/WindowsTerminal /NoShellIntegration /GitOnlyOnPath /SChannel" >nul
+    choco install --force -y git --params "/WindowsTerminal /NoShellIntegration /SChannel" >nul
 
-    IF %ERRORLEVEL% NEQ 0 (
+    IF %ERRORLEVEL% EQU 0 (
         echo SUCCESS
     ) else (
         echo FAILED
-        echo [ERROR] %ERR%
         pause >nul & exit
     )
 ) else (
@@ -61,35 +59,68 @@ IF "%CYGWIN_PATH%"=="" (
 )
 
 IF "%CYGWIN_PATH%"=="" (
-    if exist "%Location%/" (
-        if not exist %Location%/bin/cygpath.exe (
-            choco install cygwin --params "/InstallDir:%Location% /NoStartMenu" >nul 2>nul
+    IF "%Location%" NEQ "Dialog Cancelled" (
+        if exist "%Location%/" (
+            if not exist %Location%/bin/cygpath.exe (
+                choco install --force cygwin --params "/InstallDir:%Location% /NoStartMenu" >nul
 
-            IF "%Location%" neq "Dialog Cancelled" (
+                IF %ERRORLEVEL% EQU 0 (
+                    echo SUCCESS
+
+                    setx CYGWIN_PATH %Location% >nul 2>nul
+                    set CYGWIN_PATH=%Location% >nul 2>nul
+
+                    goto vscode
+                ) else (
+                    echo FAILED
+                    pause >nul & exit
+                )
+            ) else (
                 echo SUCCESS
 
                 setx CYGWIN_PATH %Location% >nul 2>nul
                 set CYGWIN_PATH=%Location% >nul 2>nul
-                
-                goto jq
+
+                ERR=Cygwin was already installed at %Location%
             )
-        ) else (
-            echo SUCCESS
-
-            setx CYGWIN_PATH %Location% >nul 2>nul
-            set CYGWIN_PATH=%Location% >nul 2>nul
-
-            ERR=Cygwin was already installed at %Location%
         )
     )
-
     echo FAILED
-    echo [ERROR] %ERR%
     pause >nul & exit
 )
 
-:jq
+:vscode
+WHERE code >nul 2>nul
+IF %ERRORLEVEL% NEQ 0 (
+    echo|set /p="[INFO] Installing VSCode... "
 
+    choco install --force -y vscode >nul
+
+    IF %ERRORLEVEL% EQU 0 (
+        echo SUCCESS
+    ) else (
+        echo FAILED
+        pause >nul & exit
+    )
+) else (
+    echo [INFO] Installing VSCode... Skipping
+)
+
+:jq
+IF not exist "%CYGWIN_PATH%\bin\jq.exe" (
+    echo|set /p="[INFO] Installing Jq... "
+
+    choco install --force -y jq --source cygwin >nul
+
+    IF %ERRORLEVEL% EQU 0 (
+        echo SUCCESS
+    ) else (
+        echo FAILED
+        pause >nul & exit
+    )
+) else (
+    echo [INFO] Installing Jq... Skipping
+)
 
 :install
 SET DIR=%~dp0

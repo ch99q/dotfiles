@@ -1,0 +1,155 @@
+{
+  "files.exclude": {
+    ".next": true,
+    ".nuxt": true,
+    ".vscode": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/*-lock.json": true,
+    "**/*.lock": true,
+    "**/tmp/**": true,
+    "**/node_modules/**": true,
+    "**/bower_components/**": true
+  },
+  "files.watcherExclude": {
+    ".next": true,
+    ".nuxt": true,
+    ".vscode": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/*-lock.json": true,
+    "**/*.lock": true,
+    "**/tmp/**": true,
+    "**/node_modules/**": true,
+    "**/bower_components/**": true
+  },
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.fileHistory.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.jsxBracketSameLine": true,
+  "prettier.useTabs": true,
+  "vetur.experimental.templateInterpolationService": true,
+  "vetur.format.defaultFormatter.html": "prettier",
+  "eslint.alwaysShowStatus": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "javascriptreact",
+    "jsx-sublime-babel-tags": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showExpandedAbbreviation": "never",
+  "tailwindCSS.emmetCompletions": true,
+  "cSpell.language": "dk,en,da",
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "c",
+    "cpp",
+    "csharp",
+    "css",
+    "git-commit",
+    "go",
+    "handlebars",
+    "html",
+    "jade",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "latex",
+    "less",
+    "markdown",
+    "php",
+    "plaintext",
+    "postcss",
+    "powershell",
+    "properties",
+    "pug",
+    "python",
+    "restructuredtext",
+    "rust",
+    "scala",
+    "scss",
+    "shellscript",
+    "source.css.jsx.styled",
+    "sql",
+    "svelte",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "vue-html",
+    "vue-postcss",
+    "xml",
+    "yaml",
+    "yml"
+  ],
+  "cSpell.userWords": [
+    "Interop",
+    "esnext",
+    "npdf",
+    "nuxt",
+    "nuxtjs",
+    "tailwindcss"
+  ],
+  "breadcrumbs.enabled": false,
+  "editor.tabCompletion": "on",
+  "editor.minimap.enabled": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "first",
+  "editor.largeFileOptimizations": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.fontFamily": "'Fira Code', 'Operator Mono', 'iA Writer Duospace', 'Source Code Pro', Menlo, Monaco, monospace",
+  "editor.fontLigatures": true,
+  "editor.detectIndentation": true,
+  "editor.renderIndentGuides": false,
+  "workbench.editor.showTabs": true,
+  "workbench.colorTheme": "One Dark Pro",
+  "window.zoomLevel": 0,
+  "javascript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "debug.toolBarLocation": "hidden",
+  "files.autoSave": "off",
+  "files.associations": {
+    "*.js": "javascriptreact",
+    "*.css": "postcss"
+  },
+  "discord.lowerDetailsEditing": "In: {workspace}"
+}

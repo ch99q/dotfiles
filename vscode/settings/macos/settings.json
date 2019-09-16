@@ -1,0 +1,10 @@
+{
+    // ===========================
+    //      Mac OS - Touchbar
+    // ===========================
+    "nasc-touchbar.addCursorBelow": false,
+    "nasc-touchbar.commentLine": true,
+    "nasc-touchbar.blockComment": true,
+    "nasc-touchbar.rename": false,
+    "nasc-touchbar.togglePanel": false
+}
