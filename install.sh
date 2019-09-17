@@ -85,7 +85,7 @@ echo "[INFO] Successful all software installed!"
 
 echo "[INFO] Cloning repository to ~/.dotfiles"
 
-git clone https://github.com/mrcrille/dotfiles ~/.dotfiles
+git clone git@github.com:mrcrille/dotfiles.git ~/.dotfiles
 
 echo "[INFO] Finished cloning repository!"
 
