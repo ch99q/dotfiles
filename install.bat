@@ -122,6 +122,22 @@ IF not exist "%CYGWIN_PATH%\bin\jq.exe" (
     echo [INFO] Installing Jq... Skipping
 )
 
+:hub
+IF not exist "%CYGWIN_PATH%\bin\hub.exe" (
+    echo|set /p="[INFO] Installing Hub... "
+
+    choco install --force -y hub --source cygwin >nul
+
+    IF %ERRORLEVEL% EQU 0 (
+        echo SUCCESS
+    ) else (
+        echo FAILED
+        pause >nul & exit
+    )
+) else (
+    echo [INFO] Installing Hub... Skipping
+)
+
 :install
 SET DIR=%~dp0
 SET DIR=%DIR:~0,-1%

@@ -239,3 +239,36 @@ if [ $CONF_PROFILE -eq 1 ]; then
     fi
   done
 fi
+
+if [ $CONF_GIT -eq 1 ]; then
+  echo "[INFO] Writing GIT files"
+
+  for f in $CONF_GIT_PATH; do
+    if test -f $f; then
+      N=$(basename $f)
+      H=~
+      if test -f $H/$N && [ $BACKUP -eq 1 ]; then
+        mv $H/$N $H/$N.bak
+        echo "[INFO] Created backup of $H/$N"
+      fi
+      rm -rf $H/$N
+      ln -s $f $H/$N
+    fi
+  done
+fi
+
+if [[ "$OS" -ne "windows" ]]; then
+  echo "[INFO] Installing NVM"
+  
+  H=~
+  if test -f ~/.nvm && [ $BACKUP -eq 1 ]; then
+    mv ~/.nvm ~/.nvm.bak
+    echo "[INFO] Created backup of $H/.nvm"
+  fi
+  rm -rf ~/.nvm
+  ln -s ~/.dotfiles/nvm/.nvm ~/.nvm
+fi
+
+if [[ "$OS" -eq "windows" ]]; then
+  read
+fi

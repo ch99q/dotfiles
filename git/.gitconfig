@@ -1,0 +1,23 @@
+[alias]
+  co = checkout
+  ci = commit
+  di = diff
+  st = status
+  br = branch
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  editor = code 
+  autocrlf = input
+  attributesfile = ~/.gitattributes
+  excludesfile = ~/.gitignore
+[apply]
+  whitespace = nowarn
+[format]
+  pretty = %C(auto)%h%Creset -%C(auto)%d%Creset %s %C(bold blue)<%an> %Cgreen(%cr)%Creset
+[push]
+  default = simple
+[pager]
+  branch = false
