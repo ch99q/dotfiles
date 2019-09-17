@@ -21,3 +21,6 @@
   default = simple
 [pager]
   branch = false
+[user]
+	email = cwh@buildunity.dk
+	name = Christian Hansen
