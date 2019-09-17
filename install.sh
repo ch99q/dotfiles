@@ -85,7 +85,7 @@ echo "[INFO] Successful all software installed!"
 
 echo "[INFO] Cloning repository to ~/.dotfiles"
 
-# git clone https://github.com/mrcrille/dotfiles ~/.dotfiles
+git clone https://github.com/mrcrille/dotfiles ~/.dotfiles
 
 echo "[INFO] Finished cloning repository!"
 
@@ -93,7 +93,9 @@ cd ~/.dotfiles
 
 if [[ "$OSTYPE" == "cygwin" ]]; then
   echo -n "[INFO] Installing apt-cyg..."
+
   install ~/.dotfiles/bin/apt-cyg /bin >/dev/null 2>&1
+
   if [ $? ]; then
     echo "SUCCESS"
   else
@@ -101,7 +103,9 @@ if [[ "$OSTYPE" == "cygwin" ]]; then
   fi
 
   echo -n "[INFO] Installing dig..."
+
   apt-cyg install bind >/dev/null 2>&1
+
   if [ $? ]; then
     echo "SUCCESS"
   else

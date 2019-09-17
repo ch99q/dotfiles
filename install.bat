@@ -123,10 +123,11 @@ IF not exist "%CYGWIN_PATH%\bin\jq.exe" (
 )
 
 :hub
-IF not exist "%CYGWIN_PATH%\bin\hub.exe" (
+WHERE hub >nul 2>nul
+IF %ERRORLEVEL% NEQ 0 (
     echo|set /p="[INFO] Installing Hub... "
 
-    choco install --force -y hub --source cygwin >nul
+    choco install --force -y hub >nul
 
     IF %ERRORLEVEL% EQU 0 (
         echo SUCCESS
